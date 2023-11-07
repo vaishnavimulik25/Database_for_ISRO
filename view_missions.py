@@ -11,13 +11,13 @@ con = pymysql.connect(host="localhost",user="root",password=mypass,database=myda
 cur = con.cursor()
 
 # Enter Table Names here
-bookTable = "books" 
+bookTable = "works_on" 
     
 def view_missions(): 
     
     root = Tk()
-    root.title("Library")
-    root.minsize(width=400,height=400)
+    root.title("Mission")
+    root.minsize(width=3000,height=1400)
     root.geometry("600x500")
 
 
@@ -29,21 +29,21 @@ def view_missions():
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
     headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
         
-    headingLabel = Label(headingFrame1, text="View Books", bg='black', fg='white', font=('Courier',15))
+    headingLabel = Label(headingFrame1, text="View Missions", bg='black', fg='white', font=('Courier',15))
     headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
     
     labelFrame = Frame(root,bg='black')
     labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)
     y = 0.25
     
-    Label(labelFrame, text="%-10s%-40s%-50s%-60s"%('BID','Title','Author','Status'),bg='black',fg='white').place(relx=0.07,rely=0.1)
+    Label(labelFrame,text="%-30s%-30s%-30s%-40s"%('Mission Name','Client_id','Revenue','EID'),bg='black',fg='white').place(relx=0.07,rely=0.1)
     Label(labelFrame, text="------------------------------------------------------------------------------------------------------------------",bg='black',fg='white').place(relx=0.05,rely=0.2)
     getBooks = "select * from "+bookTable
     try:
         cur.execute(getBooks)
         con.commit()
         for i in cur:
-            Label(labelFrame, text="%-10s%-40s%-50s%-60s"%(i[0],i[1],i[2],i[3]),bg='black',fg='white').place(relx=0.07,rely=y)
+            Label(labelFrame, text="%-30s%-30s%-30s%-40s"%(i[0],i[1],i[2],i[3]),bg='black',fg='white').place(relx=0.07,rely=y)
             y += 0.1
     except:
         messagebox.showinfo("Failed to fetch files from database")

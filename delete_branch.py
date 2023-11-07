@@ -12,8 +12,8 @@ con = pymysql.connect(host="localhost",user="root",password=mypass,database=myda
 cur = con.cursor()
 
 # Enter Table Names here
-issueTable = "books_issued" 
-bookTable = "books" #Book Table
+ 
+bookTable = "Branch" #Book Table
 
 
 def deleteBook():
@@ -21,12 +21,12 @@ def deleteBook():
     bid = bookInfo1.get()
     
     deleteSql = "delete from "+bookTable+" where bid = '"+bid+"'"
-    deleteIssue = "delete from "+issueTable+" where bid = '"+bid+"'"
+    #deleteIssue = "delete from "+issueTable+" where bid = '"+bid+"'"
     try:
         cur.execute(deleteSql)
         con.commit()
-        cur.execute(deleteIssue)
-        con.commit()
+        #cur.execute(deleteIssue)
+        #con.commit()
         messagebox.showinfo('',"")
     except:
         messagebox.showinfo("")
@@ -42,8 +42,8 @@ def delete_branch():
     global bookInfo1,bookInfo2,bookInfo3,bookInfo4,Canvas1,con,cur,bookTable,root
     
     root = Tk()
-    root.title("Library")
-    root.minsize(width=400,height=400)
+    root.title("Delete Branch")
+    root.minsize(width=3000,height=1400)
     root.geometry("600x500")
 
     
@@ -55,14 +55,14 @@ def delete_branch():
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
     headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
         
-    headingLabel = Label(headingFrame1, text="Delete Book", bg='black', fg='white', font=('Courier',15))
+    headingLabel = Label(headingFrame1, text="Delete Branch", bg='black', fg='white', font=('Courier',15))
     headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
     
     labelFrame = Frame(root,bg='black')
     labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)   
         
     # Book ID to Delete
-    lb2 = Label(labelFrame,text="Book ID : ", bg='black', fg='white')
+    lb2 = Label(labelFrame,text="Branch ID : ", bg='black', fg='white')
     lb2.place(relx=0.05,rely=0.5)
         
     bookInfo1 = Entry(labelFrame)
