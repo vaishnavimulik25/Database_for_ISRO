@@ -9,7 +9,6 @@ def bookRegister():
     title = bookInfo2.get()
     author = bookInfo3.get()
     status = bookInfo4.get()
-    status = status.lower()
     
     #insertBooks = "insert into books values( '1211' ,'Artificial Intelligence: A Modern Approach' , 'Stuart Russell Peter Norvig' 'Avail' )"
   #  insert into books values( "1212" ,"Clean Code: A Handbook of Agile Software Craftsmanship" , " Robert C. Martin" , "Avail" )
@@ -28,11 +27,12 @@ def bookRegister():
   #insert into books values( "1231" , "Computer Organization Design" , " F. Scott Fitzgerald" , "Avail" )
   #insert into books values( "1232" , "1984" , "George Orwell" , "Avail" )
   #insert into books values( "1234" , "To Kill a Mockingbird , Harper Lee" , "Avail" )
-    insertBooks = "insert into "+bookTable+" values('"+bid+"','"+title+"','"+author+"','"+status+"')"
+    insertBooks = "insert into "+bookTable+" values('"+title+"','"+author+"','"+status+"','"+bid+"')"
+
     try:
         cur.execute(insertBooks)
         con.commit()
-        messagebox.showinfo('Success',"Book added successfully")
+        messagebox.showinfo('Success',"Mission added successfully")
     except:
         messagebox.showinfo("Error","Can't add data into Database")
     
